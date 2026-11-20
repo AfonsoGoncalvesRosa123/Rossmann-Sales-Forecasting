@@ -1,0 +1,11 @@
+# Kaggle data (not redistributed)
+train.csv
+store.csv
+test.csv
+sample_submission.csv
+data/
+
+# large output
+results/predictions.csv
+
+__pycache__/
