@@ -19,7 +19,16 @@ Metrics are computed on store-days when the store was open (Sales > 0). Two back
 - **A:** origin 2015-06-19, test 2015-06-20 → 2015-07-31 (40,282 store-days)
 - **B:** origin 2015-05-08, test 2015-05-09 → 2015-06-19 (37,472 store-days)
 
-ETS_RESULTS_PLACEHOLDER
+**Comparison with ETS (Holt-Winters)** on a random sample of 60 stores. ETS is fitted separately for each store, which is too slow to run on all 1,115:
+
+| Model (60-store sample) | WAPE (A) | WAPE (B) |
+|---|---|---|
+| **Gradient boosting** | **0.083** | **0.100** |
+| Seasonal naive: last year | 0.122 | 0.141 |
+| ETS Holt-Winters (damped trend, weekly season) | 0.193 | 0.170 |
+| Seasonal naive: last week | 0.205 | 0.189 |
+
+ETS only sees each store's own past sales, so it cannot know that next week has a promotion. In this data, promotions are the second most important driver of sales.
 
 **Error by horizon (WAPE, gradient boosting)**
 
